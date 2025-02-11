@@ -20,8 +20,8 @@ This is the official code for the [GCD]. The method is accepted by the GRSL in 2
 a. Create a conda virtual environment and activate it.
 
 ```shell
-conda create -n nwd python=3.7 -y
-conda activate nwd
+conda create -n gcd python=3.7 -y
+conda activate gcd
 ```
 
 b. Install PyTorch stable or nightly and torchvision following the [official instructions](https://pytorch.org/), e.g.,
@@ -64,6 +64,12 @@ Please refer to [AI-TOD](https://github.com/jwwangchn/AI-TOD) for AI-TOD dataset
 The GCD's config files are in [configs/gcd].
 
 Please see MMDetection full tutorials [with existing dataset](docs/1_exist_data_model.md) for beginners.
+
+### Training on a single GPU
+
+```shell
+python tools/train.py configs/gcd/retinanet_r50_aitodv2_gcd_1x.py
+```
 
 ## Benchmark
 
