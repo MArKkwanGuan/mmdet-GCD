@@ -44,7 +44,7 @@ d. Install COCOAPI-AITOD for Evaluating on AI-TOD dataset
 pip install "git+https://github.com/jwwangchn/cocoapi-aitod.git#subdirectory=aitodpycocotools"
 ```
 
-e. Install NWD
+e. Install
 
 ```shell
 
@@ -61,7 +61,7 @@ Please refer to [AI-TOD](https://github.com/jwwangchn/AI-TOD) for AI-TOD dataset
 
 ## Run
 
-The NWD's config files are in [configs/gcd].
+The GCD's config files are in [configs/gcd].
 
 Please see MMDetection full tutorials [with existing dataset](docs/1_exist_data_model.md) for beginners.
 
