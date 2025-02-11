@@ -1,4 +1,4 @@
-# A Normalized Gaussian Wasserstein Distance for Tiny Object Detection
+#  Gaussian Combined Distance: A Generic Metric for Object Detection
 
 This is the official code for the [GCD]. The method is accepted by the GRSL in 2025.
 
