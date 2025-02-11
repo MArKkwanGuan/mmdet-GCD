@@ -538,4 +538,85 @@ class WassersteinLoss(nn.Module):
             constant=self.constant,
             **kwargs)
         return loss
+                    
+@mmcv.jit(derivate=True, coderize=True)
+@weighted_loss
+def gcd_loss(pred, target, eps=1e-7, mode='exp', gamma=1):
 
+    center1 = (pred[:, :2] + pred[:, 2:]) / 2
+    center2 = (target[:, :2] + target[:, 2:]) / 2
+
+    whs = center1[:, :2] - center2[:, :2]
+
+    w1 = pred[:, 2] - pred[:, 0]  + eps
+    h1 = pred[:, 3] - pred[:, 1]  + eps
+    w2 = target[:, 2] - target[:, 0]  + eps
+    h2 = target[:, 3] - target[:, 1]  + eps
+
+    center_distance1 = (whs[:, 0] / (w1 + eps)) ** 2 + (whs[:, 1] / (h1 + eps)) ** 2 + eps #
+    wh_distance1 = (((w1 - w2) / (w2 + eps)) ** 2 + ((h1 - h2) / (h2 + eps)) ** 2) / 4
+
+    center_distance2 = (whs[:, 0] / (w2 + eps)) ** 2 + (whs[:, 1] / (h2 + eps)) ** 2#
+    wh_distance2 = (((w1 - w2) / (w1 + eps)) ** 2 + ((h1 - h2) / (h1 + eps)) ** 2) / 4
+
+    gcd_2 = ( center_distance1 + wh_distance1 + center_distance2 + wh_distance2 ) / 2 
+    
+    if mode == 'exp':
+        gcd = torch.exp(-torch.sqrt(gcd_2))
+    
+    if mode == 'sqrt':
+        gcd = torch.sqrt(gcd_2)
+    
+    if mode == 'log':
+        gcd = torch.log(gcd_2 + 1)
+
+    if mode == 'norm_sqrt':
+        gcd = 1 - 1 / (gamma + torch.sqrt(gcd_2))
+
+    if mode == 'w2':
+        gcd = gcd_2
+    
+    loss = 1 - gcd
+
+    return loss
+    
+@LOSSES.register_module()
+class Gassuian_Combination_Loss(nn.Module):
+
+    def __init__(self, eps=1e-6, reduction='mean', loss_weight=1.0, mode='exp', gamma=2):
+        super(Gassuian_Combination_Loss, self).__init__()
+        self.eps = eps
+        self.reduction = reduction
+        self.loss_weight = loss_weight
+        self.mode = mode
+        self.gamma = gamma
+
+    def forward(self,
+                pred,
+                target,
+                weight=None,
+                avg_factor=None,
+                reduction_override=None,
+                **kwargs):
+        if weight is not None and not torch.any(weight > 0):
+            return (pred * weight).sum()  # 0
+        assert reduction_override in (None, 'none', 'mean', 'sum')
+        reduction = (
+            reduction_override if reduction_override else self.reduction)
+        if weight is not None and weight.dim() > 1:
+            # TODO: remove this in the future
+            # reduce the weight of shape (n, 4) to (n,) to match the
+            # giou_loss of shape (n,)
+            assert weight.shape == pred.shape
+            weight = weight.mean(-1)
+        loss = self.loss_weight * gcd_loss(
+            pred,
+            target,
+            weight,
+            eps=self.eps,
+            reduction=reduction,
+            avg_factor=avg_factor,
+            mode=self.mode,
+            gamma=self.gamma,
+            **kwargs)
+        return loss
