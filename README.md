@@ -77,23 +77,14 @@ The benchmark and trained models will be publicly available soon.
 
 ## Citation
 ```BibTeX
-@inproceedings{AI-TOD_2020_ICPR,
-    title={Tiny Object Detection in Aerial Images},
-    author={Wang, Jinwang and Yang, Wen and Guo, Haowen and Zhang, Ruixiang and Xia, Gui-Song},
-    booktitle=ICPR,
-    pages={3791--3798},
-    year={2021},
-}
-```
-```BibTeX
-@ARTICLE{10847878,
+@ARTICLE{gcd2025,
   author={Guan, Ziqian and Fu, Xieyi and Huang, Pengjun and Zhang, Hengyuan and Du, Hubin and Liu, Yongtao and Wang, Yinglin and Ma, Qang},
   journal={IEEE Geoscience and Remote Sensing Letters}, 
   title={Gaussian Combined Distance: A Generic Metric for Object Detection}, 
   year={2025},
-  volume={},
+  volume={22},
   number={},
-  pages={1-1},
-  keywords={Measurement;Object detection;Feature extraction;Optimization;Detectors;Geoscience and remote sensing;Accuracy;Training;Sensitivity;Convergence;Tiny Object Detection;Generic Metric},
+  pages={1-5},
+  keywords={Measurement;Object detection;Feature extraction;Optimization;Detectors;Geoscience and remote sensing;Accuracy;Training;Sensitivity;Convergence;Generic metric;tiny object detection},
   doi={10.1109/LGRS.2025.3531970}}
 ```
