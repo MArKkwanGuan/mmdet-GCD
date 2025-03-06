@@ -1,6 +1,6 @@
 #  Gaussian Combined Distance: A Generic Metric for Object Detection
 
-This is the official code for the [GCD]. The method is accepted by the GRSL in 2025.
+This is the official code for the [GCD](https://ieeexplore.ieee.org/document/10847878?source=authoralert). The method is accepted by the GRSL in 2025.
 
 ## Installation
 
@@ -57,7 +57,7 @@ python setup.py develop
 
 ## Prepare datasets
 
-Please refer to [AI-TOD](https://github.com/jwwangchn/AI-TOD) for AI-TOD dataset.
+Please refer to [AI-TOD-v2](https://chasel-tsui.github.io/AI-TOD-v2/) for AI-TOD dataset.
 
 ## Run
 
