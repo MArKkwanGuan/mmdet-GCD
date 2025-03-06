@@ -12,7 +12,6 @@ This is the official code for the [GCD](https://ieeexplore.ieee.org/document/108
 - CUDA 10.1 or higher
 - NCCL 2
 - GCC(G++) **5.4** or higher
-- [mmcv-nwd](https://github.com/jwwangchn/mmcv-nwd.git)==**1.3.5**
 - [cocoapi-aitod](https://github.com/jwwangchn/cocoapi-aitod)==**12.0.3**
 
 ### Install
@@ -30,21 +29,12 @@ b. Install PyTorch stable or nightly and torchvision following the [official ins
 pip install torch==1.5.0+cu101 torchvision==0.6.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 
-c. Install MMCV-NWD
-
-```shell
-git clone https://github.com/jwwangchn/mmcv-nwd.git
-cd mmcv-nwd
-MMCV_WITH_OPS=1 pip install -e .  # package mmcv-full will be installed after this step
-cd ../
-```
-
-d. Install COCOAPI-AITOD for Evaluating on AI-TOD dataset
+c. Install COCOAPI-AITOD for Evaluating on AI-TOD-v2 dataset
 ```shell
 pip install "git+https://github.com/jwwangchn/cocoapi-aitod.git#subdirectory=aitodpycocotools"
 ```
 
-e. Install
+d. Install
 
 ```shell
 
@@ -57,7 +47,7 @@ python setup.py develop
 
 ## Prepare datasets
 
-Please refer to [AI-TOD-v2](https://chasel-tsui.github.io/AI-TOD-v2/) for AI-TOD dataset.
+Please refer to [AI-TOD-v2](https://chasel-tsui.github.io/AI-TOD-v2/) for AI-TOD-v2 dataset.
 
 ## Run
 
