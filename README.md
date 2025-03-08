@@ -1,6 +1,6 @@
 #  Gaussian Combined Distance: A Generic Metric for Object Detection
 
-This is the official code for the [GCD](https://ieeexplore.ieee.org/document/10847878?source=authoralert). The method is accepted by the GRSL in 2025.
+This is the official code for the [GCD](https://ieeexplore.ieee.org/document/10847878). The method is accepted by the GRSL in 2025.
 
 ## Installation
 
@@ -60,10 +60,6 @@ Please see MMDetection full tutorials [with existing dataset](docs/1_exist_data_
 ```shell
 python tools/train.py configs/gcd/retinanet_r50_aitodv2_gcd_1x.py
 ```
-
-## Benchmark
-
-The benchmark and trained models will be publicly available soon.
 
 ## Citation
 ```BibTeX
